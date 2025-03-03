@@ -1,0 +1,258 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - BookHaven</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 1rem 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .book-details {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .book-image {
+            width: 300px;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .book-info {
+            flex-grow: 1;
+        }
+        .book-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .book-author {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        .book-year {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+        .book-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+        .book-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .btn-buy {
+            background-color: #e74c3c;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-buy:hover {
+            background-color: #c0392b;
+        }
+        .back-btn {
+            background-color: #7f8c8d;
+        }
+        .back-btn:hover {
+            background-color: #6c7a89;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BookWorld</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">Bestsellers</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div id="bookDetails" class="book-details">
+        </div>
+        
+        <a href="index.html" class="btn back-btn">Back to Book List</a>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+        </div>
+        <p>&copy; 2025 BookHaven. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get('id');
+            
+            // Book data (in a real application, this would come from a database)
+            const books = {
+                '1': {
+                    title: 'To Kill a Mockingbird',
+                    author: 'Harper Lee',
+                    year: '1960',
+                    price: '$12.99',
+                    description: 'To Kill a Mockingbird is a novel by Harper Lee published in 1960. It was immediately successful, winning the Pulitzer Prize, and has become a classic of modern American literature. The plot and characters are loosely based on Lee\'s observations of her family, her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936, when she was 10 years old. The novel is renowned for its warmth and humor, despite dealing with the serious issues of rape and racial inequality.'
+                },
+                '2': {
+                    title: '1984',
+                    author: 'George Orwell',
+                    year: '1949',
+                    price: '$10.99',
+                    description: '1984 is a dystopian social science fiction novel by English novelist George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell\'s ninth and final book completed in his lifetime. The story takes place in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, historical negationism, and propaganda.'
+                },
+                '3': {
+                    title: 'The Great Gatsby',
+                    author: 'F. Scott Fitzgerald',
+                    year: '1925',
+                    price: '$11.99',
+                    description: 'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, the novel depicts narrator Nick Carraway\'s interactions with mysterious millionaire Jay Gatsby and Gatsby\'s obsession to reunite with his former lover, Daisy Buchanan. The novel was inspired by a youthful romance Fitzgerald had with a socialite, and by parties he attended on Long Island\'s North Shore in 1922.'
+                },
+                '4': {
+                    title: 'Pride and Prejudice',
+                    author: 'Jane Austen',
+                    year: '1813',
+                    price: '$9.99',
+                    description: 'Pride and Prejudice is an 1813 romantic novel of manners written by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.'
+                },
+                '5': {
+                    title: 'The Hobbit',
+                    author: 'J.R.R. Tolkien',
+                    year: '1937',
+                    price: '$14.99',
+                    description: 'The Hobbit, or There and Back Again is a children\'s fantasy novel by English author J. R. R. Tolkien. It was published on 21 September 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction. The book remains popular and is recognized as a classic in children\'s literature.'
+                },
+                '6': {
+                    title: 'Harry Potter and the Sorcerer\'s Stone',
+                    author: 'J.K. Rowling',
+                    year: '1997',
+                    price: '$15.99',
+                    description: 'Harry Potter and the Philosopher\'s Stone is a fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling\'s debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry.'
+                }
+            };
+            
+            // Display book details
+            const bookDetailsDiv = document.getElementById('bookDetails');
+            const book = books[bookId];
+            
+            if (book) {
+                document.title = `${book.title} - BookWorld`;
+                
+                bookDetailsDiv.innerHTML = `
+                    <div class="book-image">Book Cover</div>
+                    <div class="book-info">
+                        <h2 class="book-title">${book.title}</h2>
+                        <p class="book-author">By ${book.author}</p>
+                        <p class="book-year">Published in ${book.year}</p>
+                        <p class="book-price">${book.price}</p>
+                        <div class="book-description">
+                            ${book.description}
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-buy">Add to Cart</a>
+                            <a href="#" class="btn">Add to Wishlist</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                bookDetailsDiv.innerHTML = '<p>Book not found!</p>';
+            }
+        });
+    </script>
+</body>
+</html>
