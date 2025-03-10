@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNook - Your Ultimate Book Destination</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom colors */
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #ffa502;
+            --dark-color: #2d3436;
+            --light-color: #f8f9fa;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/bookstore-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+        }
+
+        /* Custom card styling */
+        .book-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-card img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Category card styling */
+        .category-card {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .category-card:hover {
+            transform: scale(1.03);
+        }
+
+        .category-card-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Testimonial section */
+        .testimonial-card {
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        /* Newsletter form */
+        .newsletter-section {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer styling */
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Social media icons */
+        .social-icons .bi {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons .bi:hover {
+            color: var(--accent-color);
+        }
+
+        /* Sale badge */
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+
+        /* Author name styling */
+        .author-name {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Custom button */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #5849e6;
+            border-color: #5849e6;
+        }
+
+        /* Banner styling */
+        .banner {
+            background-color: var(--accent-color);
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="banner text-center text-dark">
+        <div class="container">
+            Free shipping on orders over $35! Use code: FREESHIP
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-book me-2"></i>
+                <span>BookNook</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-door me-1"></i>Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-grid me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                            <li><a class="dropdown-item" href="fiction.html">Fiction</a></li>
+                            <li><a class="dropdown-item" href="non-fiction.html">Non-Fiction</a></li>
+                            <li><a class="dropdown-item" href="academic.html">Academic</a></li>
+                            <li><a class="dropdown-item" href="children.html">Children's Books</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="categories.html">All Categories</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="new-arrivals.html"><i class="bi bi-star me-1"></i>New Arrivals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bestsellers.html"><i class="bi bi-trophy me-1"></i>Bestsellers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="deals.html"><i class="bi bi-tag me-1"></i>Deals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-info-circle me-1"></i>About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
+                </ul>
+                <form class="d-flex me-2">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search books..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+                </form>
+                <div class="d-flex">
+                    <a href="account.html" class="btn btn-outline-light me-2"><i class="bi bi-person"></i></a>
+                    <a href="wishlist.html" class="btn btn-outline-light me-2"><i class="bi bi-heart"></i></a>
+                    <a href="cart.html" class="btn btn-outline-light position-relative">
+                        <i class="bi bi-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Discover Your Next Favorite Book</h1>
+            <p class="lead mb-4">Explore thousands of books across all genres at the best prices</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="categories.html" class="btn btn-primary btn-lg">Browse Collection</a>
+                <a href="membership.html" class="btn btn-outline-light btn-lg">Join Membership</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Browse by Category</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="category-card" style="background-image: url(background.jpg);">
+                        <div class="category-card-content">
+                            <h3>Fiction</h3>
+                            <a href="fiction.html" class="btn btn-sm btn-light">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card" style="background-image: url('background1.jpg');">
+                        <div class="category-card-content">
+                            <h3>Non-Fiction</h3>
+                            <a href="non-fiction.html" class="btn btn-sm btn-light">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card" style="background-image: url('background2.jpg');">
+                        <div class="category-card-content">
+                            <h3>Children's Books</h3>
+                            <a href="children.html" class="btn btn-sm btn-light">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bestselling Books -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Bestselling Books</h2>
+                <a href="bestsellers.html" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row g-4">
+                <!-- Book Card 1 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-danger sale-badge">20% OFF</span>
+                        <img src="midnight.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">The Midnight Library</h5>
+                            <p class="card-text author-name">Matt Haig</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-decoration-line-through text-muted">$24.99</span>
+                                    <span class="ms-2 fw-bold text-danger">$19.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 2 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <img src="AtomicHabits.webp" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">Atomic Habits</h5>
+                            <p class="card-text author-name">James Clear</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$22.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 3 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-danger sale-badge">15% OFF</span>
+                        <img src="edu.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">Educated: A Memoir</h5>
+                            <p class="card-text author-name">Tara Westover</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-decoration-line-through text-muted">$19.99</span>
+                                    <span class="ms-2 fw-bold text-danger">$16.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 4 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <img src="where.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">Where the Crawdads Sing</h5>
+                            <p class="card-text author-name">Delia Owens</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$20.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>New Arrivals</h2>
+                <a href="new-arrivals.html" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row g-4">
+                <!-- Book Card 1 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-success sale-badge">NEW</span>
+                        <img src="silent.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">The Silent Patient</h5>
+                            <p class="card-text author-name">Alex Michaelides</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$25.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 2 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-success sale-badge">NEW</span>
+                        <img src="kris.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">The Four Winds</h5>
+                            <p class="card-text author-name">Kristin Hannah</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$23.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 3 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-success sale-badge">NEW</span>
+                        <img src="andy.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">Project Hail Mary</h5>
+                            <p class="card-text author-name">Andy Weir</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$26.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book Card 4 -->
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card book-card">
+                        <span class="badge bg-success sale-badge">NEW</span>
+                        <img src="invisible.jpg" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">The Invisible Life of Addie LaRue</h5>
+                            <p class="card-text author-name">V.E. Schwab</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$21.99</span>
+                                </div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Deals Banner -->
+    <section class="py-5 bg-primary text-white text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 mb-4">Special Deal of the Week</h2>
+                    <p class="lead mb-4">Buy 2 books, get 1 free! Limited time offer.</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a href="deals.html" class="btn btn-light btn-lg px-4">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Customers Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text">"Best online bookstore I've ever used! Fast delivery and excellent customer service. I ordered 3 books and they arrived within 2 days, perfectly packed."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <div class="flex-shrink-0">
+                                <img src="images/customer1.jpg" alt="Customer" class="rounded-circle" width="50" height="50">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Sarah Johnson</h6>
+                                <small class="text-muted">Book Lover</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="card-text">"What I love most about BookNook is their wide selection and competitive prices. Found some rare books here that I couldn't find anywhere else."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <div class="flex-shrink-0">
+                                <img src="images/customer2.jpg" alt="Customer" class="rounded-circle" width="50" height="50">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Michael Roberts</h6>
+                                <small class="text-muted">Collector</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text">"The membership program is totally worth it! I save so much with free shipping and exclusive discounts. I recommend BookNook to all my friends."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <div class="flex-shrink-0">
+                                <img src="images/customer3.jpg" alt="Customer" class="rounded-circle" width="50" height="50">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-0">Emily Chen</h6>
+                                <small class="text-muted">Member</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-3">Subscribe to Our Newsletter</h2>
+                    <p class="mb-4">Get updates on new releases, exclusive offers, and reading recommendations</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg" placeholder="Your email address">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-light btn-lg w-100">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">BookNook</h5>
+                    <p>Your one-stop destination for books of all genres. We believe in the power of reading to transform lives.</p>
+                    <div class="social-icons">
+                        <a href="#" class="footer-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-link"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="footer-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Home</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Books</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">New Arrivals</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Bestsellers</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Special Deals</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Gift Cards</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Customer Service</h5>
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><a href="/contact" class="footer-link">Contact Us</a></li>
+                      <li class="mb-2"><a href="/faq" class="footer-link">FAQ</a></li>
+                      <li class="mb-2"><a href="/shipping" class="footer-link">Shipping & Delivery</a></li>
+                      <li class="mb-2"><a href="/returns" class="footer-link">Returns & Exchanges</a></li>
+                      <li class="mb-2"><a href="/order-tracking" class="footer-link">Order Tracking</a></li>
+                      <li class="mb-2"><a href="/payment-options" class="footer-link">Payment Options</a></li>
+                    </ul>
+                  </div>
