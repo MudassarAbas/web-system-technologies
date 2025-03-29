@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab07 Tasks</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <!-- Task-1 -->
+
+    <h2>Keyboard and Mouse Events</h2>
+    <div id="eventArea">Interact here!</div>
+    <p id="output"></p>
+
+    <!-- Task-2 -->
+
+    <h2>Mouse Coordinates Tracker</h2>
+    <div id="coordinateDisplay">Move your mouse here!</div>
+
+    <!-- Task-3 -->
+
+    <div class="container form-container">
+        <h2 class="text-center">Interactive Form</h2>
+        <form id="interactiveForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea class="form-control" id="bio" rows="3"></textarea>
+                <div class="char-count"><span id="charCount">0</span>/100</div>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country">
+                    <option selected disabled>Select a country</option>
+                    <option value="usa">USA</option>
+                    <option value="uk">UK</option>
+                    <option value="canada">Canada</option>
+                    <option value="australia">Australia</option>
+                </select>
+                <div id="countryMessage" class="mt-2 text-success"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
